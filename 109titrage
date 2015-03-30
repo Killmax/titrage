@@ -10,13 +10,17 @@ import math
 
 def usage():
     print "USAGE : ./109titrage [angle]"
-    sys.exit()
+    sys.exit(1)
 
 def frange(start, stop, step):
     i = start
     while i < stop:
         yield i
         i += step
+
+
+
+def launch_angle(angle):
 
 if (len(sys.argv) != 2 or len(sys.argv) != 1):
     usage()
@@ -29,7 +33,7 @@ elif (len(sys.argv) == 2):
     if (angle > 80 or ang < 10):
         print "ERROR : 10 <= a <= 80"
         usage()
-    ##launch(int(sys.argv[1])
+    launch_angle(int(sys.argv[1])
 
 fig = gcf()
 fig.canvas.set_window_title('SansTitre-age1.jpg')
