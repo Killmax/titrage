@@ -18,12 +18,37 @@ def frange(start, stop, step):
         yield i
         i += step
 
-
+def launch():
+    try:
+        f = open('test', 'r')
+    except:
+        print "Bad file"
+        sys.exit(1)
+    tab = []
+    x = []
+    y = []
+    for line in f:
+        try:
+            tab.append(line.split(';'))
+        except:
+            print "Bad separator"
+            sys.exit(1)
+        try :
+            x.append(int(tab[0]))
+        except:
+            print "Problem in file : x"
+            sys.exit(1)
+        try :
+            y.append(float(tab[1]))
+        except:
+            print "Problem in file : y"
+            sys.exit(1)
 
 def launch_angle(angle):
+    sys.exit(0)
 
-if (len(sys.argv) != 2 or len(sys.argv) != 1):
-    usage()
+if (len(sys.argv) == 1):
+    launch()
 elif (len(sys.argv) == 2):
     try:
         angle = int(sys.argv[1])
@@ -33,7 +58,9 @@ elif (len(sys.argv) == 2):
     if (angle > 80 or ang < 10):
         print "ERROR : 10 <= a <= 80"
         usage()
-    launch_angle(int(sys.argv[1])
+    #launch_angle(int(sys.argv[1])
+elif (len(sys.argv) != 2 or len(sys.argv) != 1):
+    usage()
 
 fig = gcf()
 fig.canvas.set_window_title('SansTitre-age1.jpg')
