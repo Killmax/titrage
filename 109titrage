@@ -19,22 +19,21 @@ def frange(start, stop, step):
         i += step
 
 def launch():
-    try:
-        f = open('test', 'r')
-    except:
-        print "Bad file"
-        sys.exit(1)
+    f = sys.stdin
     tab = []
     x = []
     y = []
+    deriv_y = []
     for line in f:
+        if (str(line) == "FIN" or str(line) == "FIN\n"):
+            break
         try:
-            tab.append(line.split(';'))
+            tab = line.split(';')
         except:
             print "Bad separator"
             sys.exit(1)
         try :
-            x.append(int(tab[0]))
+            x.append(float(tab[0]))
         except:
             print "Problem in file : x"
             sys.exit(1)
@@ -43,9 +42,17 @@ def launch():
         except:
             print "Problem in file : y"
             sys.exit(1)
+    plot(x, y, 'b')
+    xlabel('Volume (mL)')
+    ylabel('pH')
+
 
 def launch_angle(angle):
     sys.exit(0)
+
+fig = gcf()
+fig.canvas.set_window_title('SansTitre-age1.jpg')
+title("lel", fontsize=16)
 
 if (len(sys.argv) == 1):
     launch()
@@ -62,7 +69,4 @@ elif (len(sys.argv) == 2):
 elif (len(sys.argv) != 2 or len(sys.argv) != 1):
     usage()
 
-fig = gcf()
-fig.canvas.set_window_title('SansTitre-age1.jpg')
-title("lel", fontsize=16)
 show()
