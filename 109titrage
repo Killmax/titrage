@@ -24,6 +24,8 @@ def launch():
     x = []
     y = []
     deriv_y = []
+    eq_x = []
+    eq_y = []
     for line in f:
         if (str(line) == "FIN" or str(line) == "FIN\n"):
             break
@@ -43,9 +45,22 @@ def launch():
             print "Problem in file : y"
             sys.exit(1)
     plot(x, y, 'b')
+    xlim(0, x[-1])
+    ylim(0, 14)
+    for i in range(len(x)):
+        try:
+            deriv_y.append((y[i + 1] - y[i]) / (x[i + 1] - x[i]))
+        except:
+            deriv_y.append((y[i] - y[i - 1]) / (x[i] - (x[i - 1])))
+            break
+    plot(x, deriv_y, 'g')
     xlabel('Volume (mL)')
     ylabel('pH')
-
+    for i in frange(0, max(deriv_y), 0.01):
+        eq_x.append(x[deriv_y.index(max(deriv_y))])
+        eq_y.append(i)
+    plot(eq_x, eq_y, 'black')
+    print "Volume équivalent : %.2f mL" % x[deriv_y.index(max(deriv_y))]
 
 def launch_angle(angle):
     sys.exit(0)
