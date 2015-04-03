@@ -44,7 +44,7 @@ def launch():
         except:
             print "Problem in file : y"
             sys.exit(1)
-    plot(x, y, 'b')
+    plot(x, y, 'b', label="V(pH)")
     xlim(0, x[-1])
     ylim(0, 14)
     for i in range(len(x)):
@@ -53,17 +53,20 @@ def launch():
         except:
             deriv_y.append((y[i] - y[i - 1]) / (x[i] - (x[i - 1])))
             break
-    plot(x, deriv_y, 'g')
-    xlabel('Volume (mL)')
-    ylabel('pH')
+    plot(x, deriv_y, 'g', label="Derivee")
+    title("Titrage par pHmetrie de l'acide benzoique par de la soude", fontsize = 16)
+    xlabel('Volume (mL)', fontsize = 16)
+    ylabel('pH', fontsize = 16)
     for i in frange(0, max(deriv_y), 0.01):
         eq_x.append(x[deriv_y.index(max(deriv_y))])
         eq_y.append(i)
-    plot(eq_x, eq_y, 'black')
+    plot(eq_x, eq_y, 'black', label="Volume equivalent")
+    legend(loc=2)
     print "Volume équivalent : %.2f mL" % x[deriv_y.index(max(deriv_y))]
 
 def launch_angle(angle):
-    sys.exit(0)
+    print "Fonctionnalité non gérée"
+    sys.exit()
 
 fig = gcf()
 fig.canvas.set_window_title('SansTitre-age1.jpg')
@@ -77,10 +80,10 @@ elif (len(sys.argv) == 2):
     except:
         print "Please enter a number"
         usage()
-    if (angle > 80 or ang < 10):
+    if (angle > 80 or angle < 10):
         print "ERROR : 10 <= a <= 80"
         usage()
-    #launch_angle(int(sys.argv[1])
+    launch_angle(int(sys.argv[1]))
 elif (len(sys.argv) != 2 or len(sys.argv) != 1):
     usage()
 
