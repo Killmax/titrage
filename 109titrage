@@ -70,7 +70,6 @@ def launch_angle(angle):
 
 fig = gcf()
 fig.canvas.set_window_title('SansTitre-age1.jpg')
-title("lel", fontsize=16)
 
 if (len(sys.argv) == 1):
     launch()
