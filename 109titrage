@@ -19,7 +19,11 @@ def frange(start, stop, step):
         i += step
 
 def launch():
-    f = sys.stdin
+    if not sys.stdin.isatty():
+        f = sys.stdin
+    else:
+        print "Nothing in standard input"
+        sys.exit(1)
     tab = []
     x = []
     y = []
