@@ -9,7 +9,7 @@ from scipy import *
 import math
 
 def usage():
-    print "USAGE : ./109titrage [angle]"
+    print "USAGE : ./109titrage [angle] < text file"
     sys.exit(1)
 
 def frange(start, stop, step):
